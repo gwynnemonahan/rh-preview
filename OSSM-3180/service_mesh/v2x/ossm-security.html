@@ -2755,7 +2755,7 @@
 <li><a href="#ossm-cert-manager-integration-istio_ossm-security">About integrating Service Mesh with cert-manager and istio-csr</a>
 <ul class="sectlevel2">
 <li><a href="#ossm-cert-manager-install_ossm-security">Installing cert-manager</a></li>
-<li><a href="#ossm-cert-manager -verifying-installation_ossm-security">Verifying cert-manager installation</a></li>
+<li><a href="#ossm-cert-manager-verifying-installation_ossm-security">Verifying cert-manager installation</a></li>
 </ul>
 </li>
 <li><a href="#additional-resources_cert-manager-operator-red-hat-openshift">Additional resources</a></li>
@@ -3635,7 +3635,7 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 <h2 id="ossm-cert-manager-integration-istio_ossm-security"><a class="anchor" href="#ossm-cert-manager-integration-istio_ossm-security"></a>About integrating Service Mesh with cert-manager and istio-csr</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>cert-manager is a solution for X.509 certificate management on Kubernetes. It delivers a unified API to integrate applications with private or public key infrastructure (PKI), such as Vault, Google Cloud Certificate Authority Service, Let&#8217;s Encrypt, and more.</p>
+<p>cert-manager is a solution for X.509 certificate management on Kubernetes. It delivers a unified API to integrate applications with private or public key infrastructure (PKI), such as Vault, Google Cloud Certificate Authority Service, Let&#8217;s Encrypt, and other providers.</p>
 </div>
 <div class="paragraph">
 <p>cert-manager ensures the certificates are valid and up-to-date by attempting to renew certificates at a configured time before they expire.</p>
@@ -3914,7 +3914,7 @@ The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ossm-cert-manager -verifying-installation_ossm-security"><a class="anchor" href="#ossm-cert-manager -verifying-installation_ossm-security"></a>Verifying cert-manager installation</h3>
+<h3 id="ossm-cert-manager-verifying-installation_ossm-security"><a class="anchor" href="#ossm-cert-manager-verifying-installation_ossm-security"></a>Verifying cert-manager installation</h3>
 <div class="paragraph">
 <p>To verify cert-manager is installed, follow these steps:</p>
 </div>
@@ -3932,7 +3932,7 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/
 </div>
 </li>
 <li>
-<p>Verify that <code>sleep</code> can access <code>httpbin</code>:</p>
+<p>Verify that <code>sleep</code> can access the <code>httpbin</code> service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc exec "$</span><span class="o">(</span>oc get pod <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span><span class="nb">sleep</span> <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">})</span><span class="s2">" -c sleep -n &lt;namespace&gt; -- curl http://httpbin.&lt;namespace&gt;:8000/ip -s -o /dev/null -w "</span>%<span class="o">{</span>http_code<span class="o">}</span><span class="se">\n</span><span class="s2">"</span></code></pre>
@@ -3946,10 +3946,10 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/
 </div>
 </li>
 <li>
-<p>Check mTLS traffic from the ingress gateway to <code>httpbin</code>:</p>
+<p>Check mTLS traffic from the ingress gateway to the <code>httpbin</code> service:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="go">oc apply -n foo -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/httpbin/httpbin-gateway.yaml</span></code></pre>
+<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc apply -n &lt;namespace&gt;</span><span class="w"> </span><span class="nt">-f</span> https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/httpbin/httpbin-gateway.yaml</code></pre>
 </div>
 </div>
 </li>
@@ -3978,7 +3978,7 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/
 <h2 id="additional-resources_cert-manager-operator-red-hat-openshift"><a class="anchor" href="#additional-resources_cert-manager-operator-red-hat-openshift"></a>Additional resources</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For information on how to install the cert-manager Operator for Red Hat OpenShift, see:
+<p>For information about how to install the cert-manager Operator for OpenShift Container Platform, see:
 <a href="../../security/cert_manager_operator/cert-manager-operator-install.html">Installing the cert-manager Operator for Red Hat OpenShift</a>.</p>
 </div>
 </div>
