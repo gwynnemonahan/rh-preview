@@ -2754,8 +2754,8 @@
 </li>
 <li><a href="#ossm-cert-manager-integration-istio_ossm-security">About integrating Service Mesh with cert-manager and istio-csr</a>
 <ul class="sectlevel2">
-<li><a href="#ossm-install-cert-manager_ossm-security">Install cert-manager</a></li>
-<li><a href="#ossm-verify-cert-manager-installation_ossm-security">Verify cert-manager installation</a></li>
+<li><a href="#ossm-cert-manager-install_ossm-security">Installing cert-manager</a></li>
+<li><a href="#ossm-cert-manager -verifying-installation_ossm-security">Verifying cert-manager installation</a></li>
 </ul>
 </li>
 <li><a href="#additional-resources_cert-manager-operator-red-hat-openshift">Additional resources</a></li>
@@ -3635,13 +3635,13 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 <h2 id="ossm-cert-manager-integration-istio_ossm-security"><a class="anchor" href="#ossm-cert-manager-integration-istio_ossm-security"></a>About integrating Service Mesh with cert-manager and istio-csr</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>cert-manager is a solution for X.509 certificate management on Kubernetes. It delivers a unified API to integrate applications with private or public PKIs, like Vault, Google Cloud Certificate Authority Service, Let&#8217;s Encrypt, and more.</p>
+<p>cert-manager is a solution for X.509 certificate management on Kubernetes. It delivers a unified API to integrate applications with private or public key infrastructure (PKI), such as Vault, Google Cloud Certificate Authority Service, Let&#8217;s Encrypt, and more.</p>
 </div>
 <div class="paragraph">
-<p>It ensures the certificates are valid and up-to-date, and attempts to renew certificates at a configured time before expiration.</p>
+<p>cert-manager ensures the certificates are valid and up-to-date by attempting to renew certificates at a configured time before they expire.</p>
 </div>
 <div class="paragraph">
-<p>cert-manager also provides integration for Istio users. <code>istio-csr</code> is a certificate authority (CA) server that handles certificate signing requests (CSR) from Istio proxies and delegates signing to cert-manager that forwards CSRs to the configured CA server.</p>
+<p>For Istio users, cert-manager also provides integration with <code>istio-csr</code>, which is a certificate authority (CA) server that handles certificate signing requests (CSR) from Istio proxies. The server then delegates signing to cert-manager, which forwards CSRs to the configured CA server.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3651,7 +3651,7 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Red Hat provides support for integrating with <code>istio-csr</code> and cert-manager. It does not provide direct support for the <code>istio-csr</code> or the community cert-manager components. The use of community cert-manager shown here is for demonstration purposes only.</p>
+<p>Red Hat provides support for integrating with <code>istio-csr</code> and cert-manager. Red Hat does not provide direct support for the <code>istio-csr</code> or the community cert-manager components. The use of community cert-manager shown here is for demonstration purposes only.</p>
 </div>
 </td>
 </tr>
@@ -3692,14 +3692,17 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To avoid creating configmaps in all namesspaces when <code>istio-csr</code> is installed with helm chart <code>jetstack/cert-manager-istio-csr</code>, Red Hat recommends setting `app.controller.configmapNamespaceSelector: "maistra.io/member-of: &lt;istio-namespace&gt;`".</p>
+<p>To avoid creating config maps in all namespaces when the <code>istio-csr</code> server is installed with the <code>jetstack/cert-manager-istio-csr</code> Helm chart, use the following setting: <code>app.controller.configmapNamespaceSelector: "maistra.io/member-of: &lt;istio-namespace&gt;`" in `istio-csr.yaml</code>.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="ossm-install-cert-manager_ossm-security"><a class="anchor" href="#ossm-install-cert-manager_ossm-security"></a>Install cert-manager</h3>
+<h3 id="ossm-cert-manager-install_ossm-security"><a class="anchor" href="#ossm-cert-manager-install_ossm-security"></a>Installing cert-manager</h3>
+<div class="paragraph">
+<p>To install cert-manager, follow these steps:</p>
+</div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
@@ -3789,7 +3792,7 @@ oc apply -n istio-system -f istio-ca.yaml</span></code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-ca</code> certificate is <code>cert-manager</code>. This is necessary because <code>root-ca</code> is a cluster issuer, so the cert-manager looks for a referenced secret in its own namespace, which is <code>cert-manager</code> in the case of the cert-manager Operator for Red Hat OpenShift.
+The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-ca</code> certificate is <code>cert-manager</code> because <code>root-ca</code> is a cluster issuer, so the cert-manager looks for a referenced secret in its own namespace. Its own namespace is <code>cert-manager</code> in the case of the cert-manager Operator for Red Hat OpenShift.
 </td>
 </tr>
 </table>
@@ -3807,7 +3810,7 @@ The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-c
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Exmpale <code>istio-csr.yaml</code></div>
+<div class="title">Example <code>istio-csr.yaml</code></div>
 <div class="content">
 <pre class="rouge highlight nowrap"><code data-lang="yaml"><span class="na">replicaCount</span><span class="pi">:</span> <span class="m">2</span>
 
@@ -3911,7 +3914,10 @@ The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-c
 </div>
 </div>
 <div class="sect2">
-<h3 id="ossm-verify-cert-manager-installation_ossm-security"><a class="anchor" href="#ossm-verify-cert-manager-installation_ossm-security"></a>Verify cert-manager installation</h3>
+<h3 id="ossm-cert-manager -verifying-installation_ossm-security"><a class="anchor" href="#ossm-cert-manager -verifying-installation_ossm-security"></a>Verifying cert-manager installation</h3>
+<div class="paragraph">
+<p>To verify cert-manager is installed, follow these steps:</p>
+</div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
@@ -3919,7 +3925,7 @@ The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-c
 <p>Deploy the HTTP and <code>sleep</code> apps:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc new-project &lt;project-name&gt;</span><span class="w">
+<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc new-project &lt;namespace&gt;</span><span class="w">
 </span><span class="go">oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/httpbin/httpbin.yaml
 oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/sleep/sleep.yaml</span></code></pre>
 </div>
@@ -3929,7 +3935,7 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/
 <p>Verify that <code>sleep</code> can access <code>httpbin</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc exec "$</span><span class="o">(</span>oc get pod <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span><span class="nb">sleep</span> <span class="nt">-n</span> foo <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">})</span><span class="s2">" -c sleep -n &lt;project-name&gt; -- curl http://httpbin.foo:8000/ip -s -o /dev/null -w "</span>%<span class="o">{</span>http_code<span class="o">}</span><span class="se">\n</span><span class="s2">"</span></code></pre>
+<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc exec "$</span><span class="o">(</span>oc get pod <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span><span class="nb">sleep</span> <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">})</span><span class="s2">" -c sleep -n &lt;namespace&gt; -- curl http://httpbin.&lt;namespace&gt;:8000/ip -s -o /dev/null -w "</span>%<span class="o">{</span>http_code<span class="o">}</span><span class="se">\n</span><span class="s2">"</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
