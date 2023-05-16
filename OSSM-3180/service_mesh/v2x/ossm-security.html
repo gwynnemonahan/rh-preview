@@ -2748,7 +2748,10 @@
 <li><a href="#ossm-cert-manage_ossm-security">Adding an external certificate authority key and certificate</a>
 <ul class="sectlevel2">
 <li><a href="#ossm-cert-manage-add-cert-key_ossm-security">Adding an existing certificate and key</a></li>
-<li><a href="#ossm-cert-manage-verify-cert_ossm-security">Verifying your certificates</a></li>
+</ul>
+</li>
+<li><a href="#ossm-cert-manage-verify-cert_ossm-security">Verifying your certificates</a>
+<ul class="sectlevel2">
 <li><a href="#ossm-cert-cleanup_ossm-security">Removing the certificates</a></li>
 </ul>
 </li>
@@ -3506,10 +3509,13 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="ossm-cert-manage-verify-cert_ossm-security"><a class="anchor" href="#ossm-cert-manage-verify-cert_ossm-security"></a>Verifying your certificates</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ossm-cert-manage-verify-cert_ossm-security"><a class="anchor" href="#ossm-cert-manage-verify-cert_ossm-security"></a>Verifying your certificates</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Use the Bookinfo sample application to verify that the workload certificates are signed by the certificates that were plugged into the CA. This requires you have <code>openssl</code> installed on your machine.</p>
+<p>Use the Bookinfo sample application to verify that the workload certificates are signed by the certificates that were plugged into the CA.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -3596,7 +3602,6 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 </div>
 </li>
 </ol>
-</div>
 </div>
 <div class="sect2">
 <h3 id="ossm-cert-cleanup_ossm-security"><a class="anchor" href="#ossm-cert-cleanup_ossm-security"></a>Removing the certificates</h3>
@@ -3962,7 +3967,7 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/
 </div>
 </li>
 <li>
-<p>Verify mTLS traffic from the ingress gateway to <code>httpbin</code>:</p>
+<p>Verify mTLS traffic from the ingress gateway to the <code>httpbin</code> service:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">curl -s -I http://$</span>INGRESS_HOST/headers <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"%{http_code}"</span> <span class="nt">-s</span></code></pre>
