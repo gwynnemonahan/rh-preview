@@ -2734,7 +2734,7 @@
 <li><a href="#persistent-storage-csi-migration-overview_persistent-storage-csi-migration">Overview</a></li>
 <li><a href="#persistent-storage-csi-migration-sc-implications_persistent-storage-csi-migration">Storage class implications</a></li>
 <li><a href="#persistent-storage-csi-migration-sc-vsphere_persistent-storage-csi-migration">vSphere automatic migration</a>
-<ul class="sectlevel3">
+<ul class="sectlevel2">
 <li><a href="#new-installations-of-openshift-container-platform">New installations of OpenShift Container Platform</a></li>
 <li><a href="#upgrading-openshift-container-platform">Upgrading OpenShift Container Platform</a></li>
 </ul>
@@ -2805,14 +2805,14 @@
 <div class="sect1">
 <h2 id="persistent-storage-csi-migration-sc-vsphere_persistent-storage-csi-migration"><a class="anchor" href="#persistent-storage-csi-migration-sc-vsphere_persistent-storage-csi-migration"></a>vSphere automatic migration</h2>
 <div class="sectionbody">
-<div class="sect3">
-<h4 id="new-installations-of-openshift-container-platform"><a class="anchor" href="#new-installations-of-openshift-container-platform"></a>New installations of OpenShift Container Platform</h4>
+<div class="sect2">
+<h3 id="new-installations-of-openshift-container-platform"><a class="anchor" href="#new-installations-of-openshift-container-platform"></a>New installations of OpenShift Container Platform</h3>
 <div class="paragraph">
 <p>For new installations of OpenShift Container Platform 4.13, or later, automatic migration is enabled by default.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="upgrading-openshift-container-platform"><a class="anchor" href="#upgrading-openshift-container-platform"></a>Upgrading OpenShift Container Platform</h4>
+<div class="sect2">
+<h3 id="upgrading-openshift-container-platform"><a class="anchor" href="#upgrading-openshift-container-platform"></a>Upgrading OpenShift Container Platform</h3>
 <div class="paragraph">
 <p>When upgrading from OpenShift Container Platform 4.12, or earlier, to 4.13, automatic CSI migration for vSphere only occurs if you opt in.</p>
 </div>
@@ -2846,10 +2846,10 @@
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="using-the-web-console-to-opt-in-to-automatic-csi-migration"><a class="anchor" href="#using-the-web-console-to-opt-in-to-automatic-csi-migration"></a>Using the web console to opt in to automatic CSI migration</h4>
 <div class="sect4">
-<h5 id="using-the-web-console-to-opt-in-to-automatic-csi-migration"><a class="anchor" href="#using-the-web-console-to-opt-in-to-automatic-csi-migration"></a>Using the web console to opt in to automatic CSI migration</h5>
-<div class="sect5">
-<h6 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h6>
+<h5 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -2859,7 +2859,6 @@
 <p>Access to the cluster with cluster-admin privileges.</p>
 </li>
 </ul>
-</div>
 </div>
 <div class="sect5">
 <h6 id="procedure"><a class="anchor" href="#procedure"></a>Procedure</h6>
@@ -2915,10 +2914,11 @@
 </div>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="using-the-cli-to-opt-in-to-automatic-csi-migration"><a class="anchor" href="#using-the-cli-to-opt-in-to-automatic-csi-migration"></a>Using the CLI to opt in to automatic CSI migration</h4>
 <div class="sect4">
-<h5 id="using-the-cli-to-opt-in-to-automatic-csi-migration"><a class="anchor" href="#using-the-cli-to-opt-in-to-automatic-csi-migration"></a>Using the CLI to opt in to automatic CSI migration</h5>
-<div class="sect5">
-<h6 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h6>
+<h5 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -2927,8 +2927,8 @@
 </ul>
 </div>
 </div>
-<div class="sect5">
-<h6 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h6>
+<div class="sect4">
+<h5 id="procedure-2"><a class="anchor" href="#procedure-2"></a>Procedure</h5>
 <div class="paragraph">
 <p>To opt in to automatic CSI migration for vSphere, run the following command:</p>
 </div>

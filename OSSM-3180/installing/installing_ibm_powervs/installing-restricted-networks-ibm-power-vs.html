@@ -2839,7 +2839,7 @@ the development process.</p>
 <p>If you use a firewall, you <a href="../../installing/install_config/configuring-firewall.html#configuring-firewall">configured it to allow the sites</a> that your cluster requires access to.</p>
 </li>
 <li>
-<p>You configured the <code>ccoctl</code> utility before you installed the cluster. For more information, see <a href="../../installing/installing_ibm_powervs/preparing-to-install-on-ibm-power-vs.html#choosing-an-method-to-install-ocp-on-power-vs-installer-provisioned">Configuring the Cloud Credential Operator utility</a>.</p>
+<p>You configured the <code>ccoctl</code> utility before you installed the cluster. For more information, see <a href="../../installing/installing_ibm_powervs/preparing-to-install-on-ibm-power-vs.html#cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs">Configuring the Cloud Credential Operator utility</a>.</p>
 </li>
 </ul>
 </div>
@@ -4321,7 +4321,11 @@ accounts for the dramatically decreased machine performance.</p>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>controlPlane</code> section is a single mapping, but the <code>compute</code> section is a sequence of mappings. To meet the requirements of the different data structures, the first line of the <code>compute</code> section must begin with a hyphen, <code>-</code>, and the first line of the <code>controlPlane</code> section must not. Only one control plane pool is used.
+<td>The <code>controlPlane</code> section is a single mapping, but the <code>compute</code> section is a sequence of mappings. To meet the requirements of the different data structures, the first line of the <code>compute</code> section must begin with a hyphen, <code>-</code>, and the first line of the <code>controlPlane</code> section must not. Only one control plane pool is used.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Enables or disables simultaneous multithreading, also known as Hyper-Threading. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores. You can disable it by setting the parameter value to <code>Disabled</code>. If you disable simultaneous multithreading in some cluster machines, you must disable it in all cluster machines.
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -4338,43 +4342,43 @@ accounts for the dramatically decreased machine performance.</p>
 </div></td>
 </tr>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
 <td>The machine CIDR must contain the subnets for the compute machines and control plane machines.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>The CIDR must contain the subnets defined in <code>platform.ibmcloud.controlPlaneSubnets</code> and <code>platform.ibmcloud.computeSubnets</code>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
 <td>The cluster network plugin to install. The supported values are <code>OVNKubernetes</code> and <code>OpenShiftSDN</code>. The default value is <code>OVNKubernetes</code>.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
 <td>The name of an existing resource group. The existing VPC and subnets should be in this resource group. The cluster is deployed to this resource group.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>Specify the name of an existing VPC.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="9"></i><b>9</b></td>
+<td><i class="conum" data-value="10"></i><b>10</b></td>
 <td>Specify the name of the existing VPC subnet. The subnets must belong to the VPC that you specified. Specify a subnet for each availability zone in the region.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="10"></i><b>10</b></td>
+<td><i class="conum" data-value="11"></i><b>11</b></td>
 <td>For <code>&lt;local_registry&gt;</code>, specify the registry domain name, and optionally the port, that your mirror registry uses to serve content. For example, registry.example.com or registry.example.com:5000. For <code>&lt;credentials&gt;</code>, specify the base64-encoded user name and password for your mirror registry.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="11"></i><b>11</b></td>
+<td><i class="conum" data-value="12"></i><b>12</b></td>
 <td>You can optionally provide the <code>sshKey</code> value that you use to access the machines in your cluster.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="12"></i><b>12</b></td>
+<td><i class="conum" data-value="13"></i><b>13</b></td>
 <td>Provide the contents of the certificate file that you used for your mirror registry.</td>
 </tr>
 <tr>
-<td><i class="conum" data-value="13"></i><b>13</b></td>
+<td><i class="conum" data-value="14"></i><b>14</b></td>
 <td>Provide the <code>imageContentSources</code> section from the output of the command to mirror the repository.
 <div class="admonitionblock note">
 <table>

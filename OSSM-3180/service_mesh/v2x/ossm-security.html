@@ -3692,7 +3692,7 @@ pod "reviews-v3-79d7549c7-c2gjs" deleted</span></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>To avoid creating config maps in all namespaces when the <code>istio-csr</code> server is installed with the <code>jetstack/cert-manager-istio-csr</code> Helm chart, use the following setting: <code>app.controller.configmapNamespaceSelector: "maistra.io/member-of: &lt;istio-namespace&gt;`" in `istio-csr.yaml</code>.</p>
+<p>To avoid creating config maps in all namespaces when the <code>istio-csr</code> server is installed with the <code>jetstack/cert-manager-istio-csr</code> Helm chart, use the following setting: <code>app.controller.configmapNamespaceSelector: "maistra.io/member-of: &lt;istio-namespace&gt;"</code> in the <code>istio-csr.yaml</code> file.</p>
 </div>
 </td>
 </tr>

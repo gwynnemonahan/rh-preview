@@ -2730,10 +2730,10 @@
 <div class="sectionbody">
 <div id="toc" class="toc">
 <div id="toctitle" class="title"></div>
-<ul class="sectlevel0">
+<ul class="sectlevel1">
 <li><a href="#logging-loki-retention_logging-5.6-configuration">Enabling stream-based retention with Loki</a></li>
 <li><a href="#logging-multiline-except_logging-5.6-configuration">Enabling multi-line exception detection</a>
-<ul class="sectlevel1">
+<ul class="sectlevel2">
 <li><a href="#details">Details</a></li>
 <li><a href="#troubleshooting">Troubleshooting</a></li>
 </ul>
@@ -2812,7 +2812,9 @@
 </div>
 </div>
 </div>
-<h1 id="logging-loki-retention_logging-5.6-configuration" class="sect0"><a class="anchor" href="#logging-loki-retention_logging-5.6-configuration"></a>Enabling stream-based retention with Loki</h1>
+<div class="sect1">
+<h2 id="logging-loki-retention_logging-5.6-configuration"><a class="anchor" href="#logging-loki-retention_logging-5.6-configuration"></a>Enabling stream-based retention with Loki</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>With Logging version 5.6 and higher, you can configure retention policies based on log streams. Rules for these may be set globally, per tenant, or both. If you configure both, tenant rules apply before global rules.</p>
 </div>
@@ -2965,7 +2967,11 @@
 </tr>
 </table>
 </div>
-<h1 id="logging-multiline-except_logging-5.6-configuration" class="sect0"><a class="anchor" href="#logging-multiline-except_logging-5.6-configuration"></a>Enabling multi-line exception detection</h1>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logging-multiline-except_logging-5.6-configuration"><a class="anchor" href="#logging-multiline-except_logging-5.6-configuration"></a>Enabling multi-line exception detection</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Enables multi-line error detection of container logs.</p>
 </div>
@@ -3020,9 +3026,8 @@
       <span class="na">detectMultilineErrors</span><span class="pi">:</span> <span class="no">true</span></code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="details"><a class="anchor" href="#details"></a>Details</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="details"><a class="anchor" href="#details"></a>Details</h3>
 <div class="paragraph">
 <p>When log messages appear as a consecutive sequence forming an exception stack trace, they are combined into a single, unified log record. The first log message&#8217;s content is replaced with the concatenated content of all the message fields in the sequence.</p>
 </div>
@@ -3079,10 +3084,8 @@
 </tbody>
 </table>
 </div>
-</div>
-<div class="sect1">
-<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>Troubleshooting</h3>
 <div class="paragraph">
 <p>When enabled, the collector configuration will include a new section with type: <code>detect_exceptions</code></p>
 </div>
@@ -3110,6 +3113,7 @@
     multiline_flush_interval .2
   &lt;/match&gt;
 &lt;/label&gt;</pre>
+</div>
 </div>
 </div>
 </div>

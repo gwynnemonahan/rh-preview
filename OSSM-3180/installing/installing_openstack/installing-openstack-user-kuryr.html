@@ -2769,6 +2769,7 @@
 <li><a href="#installation-configuration-parameters-failure-domains-osp_installing-openstack-user-kuryr">RHOSP parameters for failure domains</a></li>
 <li><a href="#installation-osp-custom-subnet_installing-openstack-user-kuryr">Custom subnets in RHOSP deployments</a></li>
 <li><a href="#installation-osp-kuryr-config-yaml_installing-openstack-user-kuryr">Sample customized <code>install-config.yaml</code> file for RHOSP with Kuryr</a></li>
+<li><a href="#installation-osp-failure-domains-config_installing-openstack-user-kuryr">Example installation configuration section that uses failure domains</a></li>
 <li><a href="#installation-osp-provider-networks_installing-openstack-user-kuryr">Cluster deployment on RHOSP provider networks</a></li>
 <li><a href="#installation-osp-kuryr-port-pools_installing-openstack-user-kuryr">Kuryr ports pools</a></li>
 <li><a href="#installation-osp-kuryr-settings-installing_installing-openstack-user-kuryr">Adjusting Kuryr ports pools during installation</a></li>
@@ -5684,65 +5685,6 @@ You cannot combine zone fields and failure domains. If you want to use failure d
 </tr>
 </table>
 </div>
-<div class="sect3">
-<h4 id="installation-osp-failure-domains-config_installing-openstack-user-kuryr"><a class="anchor" href="#installation-osp-failure-domains-config_installing-openstack-user-kuryr"></a>An example installation configuration section that uses failure domains</h4>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>RHOSP failure domains is a Technology Preview feature only. Technology Preview features
-are not supported with Red Hat production service level agreements (SLAs) and
-might not be functionally complete. Red Hat does not recommend using them
-in production. These features provide early access to upcoming product
-features, enabling customers to test functionality and provide feedback during
-the development process.</p>
-</div>
-<div class="paragraph">
-<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following section of an <code>install-config.yaml</code> file demonstrates the use of failure domains in a cluster to deploy on Red Hat OpenStack Platform (RHOSP):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="yaml"><span class="c1"># ...</span>
-<span class="na">controlPlane</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
-  <span class="na">platform</span><span class="pi">:</span>
-    <span class="na">openstack</span><span class="pi">:</span>
-      <span class="na">type</span><span class="pi">:</span> <span class="s">m1.large</span>
-      <span class="na">failureDomains</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-1'</span>
-        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-1'</span>
-        <span class="na">portTargets</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
-          <span class="na">network</span><span class="pi">:</span>
-            <span class="na">id</span><span class="pi">:</span> <span class="s">8db6a48e-375b-4caa-b20b-5b9a7218bfe6</span>
-      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-2'</span>
-        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-2'</span>
-        <span class="na">portTargets</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
-          <span class="na">network</span><span class="pi">:</span>
-            <span class="na">id</span><span class="pi">:</span> <span class="s">39a7b82a-a8a4-45a4-ba5a-288569a6edd1</span>
-      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-3'</span>
-        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-3'</span>
-        <span class="na">portTargets</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
-          <span class="na">network</span><span class="pi">:</span>
-            <span class="na">id</span><span class="pi">:</span> <span class="s">8e4b4e0d-3865-4a9b-a769-559270271242</span>
-<span class="na">featureSet</span><span class="pi">:</span> <span class="s">TechPreviewNoUpgrade</span>
-<span class="c1"># ...</span></code></pre>
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="installation-osp-custom-subnet_installing-openstack-user-kuryr"><a class="anchor" href="#installation-osp-custom-subnet_installing-openstack-user-kuryr"></a>Custom subnets in RHOSP deployments</h3>
@@ -5895,6 +5837,65 @@ to connect the pods to the RHOSP network and Octavia is required to create the
 OpenShift Container Platform services.</td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-osp-failure-domains-config_installing-openstack-user-kuryr"><a class="anchor" href="#installation-osp-failure-domains-config_installing-openstack-user-kuryr"></a>Example installation configuration section that uses failure domains</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>RHOSP failure domains is a Technology Preview feature only. Technology Preview features
+are not supported with Red Hat production service level agreements (SLAs) and
+might not be functionally complete. Red Hat does not recommend using them
+in production. These features provide early access to upcoming product
+features, enabling customers to test functionality and provide feedback during
+the development process.</p>
+</div>
+<div class="paragraph">
+<p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following section of an <code>install-config.yaml</code> file demonstrates the use of failure domains in a cluster to deploy on Red Hat OpenStack Platform (RHOSP):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight nowrap"><code data-lang="yaml"><span class="c1"># ...</span>
+<span class="na">controlPlane</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">master</span>
+  <span class="na">platform</span><span class="pi">:</span>
+    <span class="na">openstack</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">m1.large</span>
+      <span class="na">failureDomains</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-1'</span>
+        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-1'</span>
+        <span class="na">portTargets</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
+          <span class="na">network</span><span class="pi">:</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">8db6a48e-375b-4caa-b20b-5b9a7218bfe6</span>
+      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-2'</span>
+        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-2'</span>
+        <span class="na">portTargets</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
+          <span class="na">network</span><span class="pi">:</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">39a7b82a-a8a4-45a4-ba5a-288569a6edd1</span>
+      <span class="pi">-</span> <span class="na">computeAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">nova-3'</span>
+        <span class="na">storageAvailabilityZone</span><span class="pi">:</span> <span class="s1">'</span><span class="s">cinder-3'</span>
+        <span class="na">portTargets</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">control-plane</span>
+          <span class="na">network</span><span class="pi">:</span>
+            <span class="na">id</span><span class="pi">:</span> <span class="s">8e4b4e0d-3865-4a9b-a769-559270271242</span>
+<span class="na">featureSet</span><span class="pi">:</span> <span class="s">TechPreviewNoUpgrade</span>
+<span class="c1"># ...</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">

@@ -2756,32 +2756,15 @@
 <div class="paragraph">
 <p>Learn how Operator Lifecycle Manager (OLM) delivers z-stream and minor version updates for OpenShift Virtualization.</p>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The Node Maintenance Operator (NMO) is no longer shipped with OpenShift Virtualization. You can <strong>install the NMO</strong> from the <strong>OperatorHub</strong> in the OpenShift Container Platform web console, or by using the OpenShift CLI (<code>oc</code>). For more information on remediation, fencing, and maintaining nodes, see the <a href="https://access.redhat.com/documentation/en-us/workload_availability_for_red_hat_openshift/23.2/html-single/remediation_fencing_and_maintenance/index#about-remediation-fencing-maintenance">Workload Availability for Red Hat OpenShift</a> documentation.</p>
 <div class="paragraph">
-<p>You must perform one of the following tasks before updating to OpenShift Virtualization 4.11 from OpenShift Virtualization 4.10.2 and later releases:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Move all nodes out of maintenance mode.</p>
-</li>
-<li>
-<p>Install the standalone NMO and replace the <code>nodemaintenances.nodemaintenance.kubevirt.io</code> custom resource (CR) with a <code>nodemaintenances.nodemaintenance.medik8s.io</code> CR.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>Updating to OpenShift Virtualization 4.13 from OpenShift Virtualization 4.12.2 is not supported.</p>
 </div>
 </td>
 </tr>
