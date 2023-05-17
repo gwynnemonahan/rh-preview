@@ -2755,7 +2755,6 @@
 <li><a href="#ossm-cert-manager-integration-istio_ossm-security">About integrating Service Mesh with cert-manager and istio-csr</a>
 <ul class="sectlevel2">
 <li><a href="#ossm-cert-manager-installation_ossm-security">Installing cert-manager</a></li>
-<li><a href="#ossm-cert-manager-verifying-installation_ossm-security">Verifying cert-manager installation</a></li>
 </ul>
 </li>
 <li><a href="#additional-resources_cert-manager-operator-red-hat-openshift">Additional resources</a></li>
@@ -3917,65 +3916,6 @@ The namespace of the <code>selfsigned-root-issuer</code> issuer and <code>root-c
 <p>To verify cert-manager is installed, follow these steps:</p>
 </div>
 <div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Deploy the HTTP and <code>sleep</code> apps:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc new-project &lt;namespace&gt;</span><span class="w">
-</span><span class="go">oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/httpbin/httpbin.yaml
-oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/sleep/sleep.yaml</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that <code>sleep</code> can access the <code>httpbin</code> service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc exec "$</span><span class="o">(</span>oc get pod <span class="nt">-l</span> <span class="nv">app</span><span class="o">=</span><span class="nb">sleep</span> <span class="nt">-n</span> &lt;namespace&gt; <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">})</span><span class="s2">" -c sleep -n &lt;namespace&gt; -- curl http://httpbin.&lt;namespace&gt;:8000/ip -s -o /dev/null -w "</span>%<span class="o">{</span>http_code<span class="o">}</span><span class="se">\n</span><span class="s2">"</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Example output:</div>
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="go">200</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Check mTLS traffic from the ingress gateway to the <code>httpbin</code> service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">oc apply -n &lt;namespace&gt;</span><span class="w"> </span><span class="nt">-f</span> https://raw.githubusercontent.com/maistra/istio/maistra-2.4/samples/httpbin/httpbin-gateway.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get the <code>istio-ingressgateway</code> route:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">INGRESS_HOST=$</span><span class="o">(</span>oc <span class="nt">-n</span> istio-system get routes istio-ingressgateway <span class="nt">-o</span> <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.spec.host}'</span><span class="o">)</span></code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify mTLS traffic from the ingress gateway to the <code>httpbin</code> service:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight nowrap"><code data-lang="terminal"><span class="gp">curl -s -I http://$</span>INGRESS_HOST/headers <span class="nt">-o</span> /dev/null <span class="nt">-w</span> <span class="s2">"%{http_code}"</span> <span class="nt">-s</span></code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ossm-cert-manager-verifying-installation_ossm-security"><a class="anchor" href="#ossm-cert-manager-verifying-installation_ossm-security"></a>Verifying cert-manager installation</h3>
-<div class="paragraph">
-<p>To verify cert-manager is installed, follow these steps:</p>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
 <p>Deploy the HTTP and <code>sleep</code> apps:</p>
